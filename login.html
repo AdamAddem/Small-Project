@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+</html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Group 7 Login</title>
+  <link rel="stylesheet" href="css/login.css" />
+  <!-- <script type="text/javascript" src="js/code.js"></script>
+  <script type="text/javascript" src="js/md5.js"></script> -->
+  <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+  <link href='https://fonts.googleapis.com/css?family=Island Moments' rel='stylesheet'>
+</head>
+
+<body>
+  <br /><br /><br /><br />
+  <div class="form" id="wholeForm">
+    <form id="login" class="input-form">
+      <input type="text" class="input-field" id="loginName" placeholder="username" name="username" required
+        pattern="(?=.*[a-zA-Z])[a-zA-Z0-9-_]{3,18}$" />
+      <input type="password" class="input-field" id="loginPassword" placeholder="password" name="password" required
+        pattern="(?=.*\d)(?=.*[A-Za-z])(?=.*[!@#$%^&*]).{8,32}" />
+      <button type="button" id="loginButton" class="submit-btn" onclick="doLogin()">Login</button>
+      <span class="text" id="loginResult"></span>
+    </form>
+    </div>
+</body> 
+</html>
