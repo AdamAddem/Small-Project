@@ -1,12 +1,12 @@
 const urlBase = 'http://localhost:3000/';
-const extension = 'php';
+const extension = '.php';
 
 let userId = 0;
 let firstName = "";
 let lastName = "";
 
 // Function to handle user login
-async function doLogin() {
+function doLogin() {
   userId = 0;
   firstName = "";
   lastName = "";
@@ -29,18 +29,21 @@ async function doLogin() {
 			if (this.readyState == 4 && this.status == 200) {
 				let jsonObject = JSON.parse( xhr.responseText );
 				userId = jsonObject.id;
-		
-				if( userId < 1 ) {		
+
+				if( userId < 1 ) {
 					document.getElementById("loginResult").innerHTML = "User/Password combination incorrect";
+					console.log("Login failed: " + loginName + " " + loginPassword);
 					return;
 				}
 		
 				firstName = jsonObject.firstName;
 				lastName = jsonObject.lastName;
 
+        console.log("Login successful: " + firstName + " " + lastName);
+
 				saveCookie();
 	
-				window.location.href = "color.html";
+				window.location.href = "index.html";
 			}
 		};
 		xhr.send(jsonPayload);
@@ -48,7 +51,6 @@ async function doLogin() {
 	catch(err) {
 		document.getElementById("loginResult").innerHTML = err.message;
 	}
-
 }
 
 function saveCookie() {
