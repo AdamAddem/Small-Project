@@ -10,6 +10,7 @@ async function doLogin() {
   userId = 0;
   firstName = "";
   lastName = "";
+  username = "";
   
   const loginName = document.getElementById("loginName").value;
   const loginPassword = document.getElementById("loginPassword").value;
@@ -57,6 +58,59 @@ async function doLogin() {
 // 	}
 }
 
+// Function to handle user signup
+async function doSignup() {
+  userId = 0;
+  firstName = "";
+  lastName = "";
+
+  const signupName = document.getElementById("signupName").value;
+  const signupPassword = document.getElementById("signupPassword").value;
+
+  document.getElementById("signupResult").innerHTML = "";
+
+  let tmp = { name: signupName, password: signupPassword };
+  let jsonPayload = JSON.stringify(tmp);
+  let url = urlBase + '/Signup' + extension;
+
+  console.log("Signup payload:", jsonPayload);
+  console.log("URL:", url);
+
+  /* Uncomment this when php is ready */
+  // let xhr = new XMLHttpRequest();
+  // xhr.open("POST", url, true);
+  // xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+  // try {
+  //   xhr.onreadystatechange = function() {
+  //     if (this.readyState == 4 && this.status == 200) {
+  //       let jsonObject = JSON.parse(xhr.responseText);
+  //       userId = jsonObject.id;
+
+  //       if (userId < 1) {
+  //         document.getElementById("signupResult").innerHTML = "Signup failed";
+  //         console.log("Signup failed: " + signupName + " " + signupPassword);
+  //         return;
+  //       }
+
+  //       firstName = jsonObject.firstName;
+  //       lastName = jsonObject.lastName;
+
+  //       console.log("Signup successful: " + firstName + " " + lastName);
+
+  //       saveCookie();
+
+  //       window.location.href = "index.html";
+  //     }
+  //   };
+  //   xhr.send(jsonPayload);
+  // }
+  // catch(err) {
+  //   document.getElementById("signupResult").innerHTML = err.message;
+  // }
+}
+
+// Function to save user info in a cookie
 function saveCookie() {
 	let minutes = 20;
 	let date = new Date();
