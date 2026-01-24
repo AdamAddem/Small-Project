@@ -25,10 +25,10 @@ function doLogin() {
   console.log("URL:", url);
   
   /* Uncomment this when php is ready */
-  // let xhr = new XMLHttpRequest();
-  // xhr.open("POST", url, true);
-  // xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-  // 
+//   let xhr = new XMLHttpRequest();
+//   xhr.open("POST", url, true);
+//   xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+//   
 //   try {
 // 		xhr.onreadystatechange = function() {
 // 			if (this.readyState == 4 && this.status == 200) {
@@ -77,15 +77,15 @@ function doSignup() {
   console.log("URL:", url);
   
   /* Uncomment this when php is ready */
-  // let xhr = new XMLHttpRequest();
-  // xhr.open("POST", url, true);
-  // xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-  // 
+//   let xhr = new XMLHttpRequest();
+//   xhr.open("POST", url, true);
+//   xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+//   
 //   try {
 // 		xhr.onreadystatechange = function() {
 // 			if (this.readState != 4) {
-//        return
-//      }
+//         return
+//       }
 // 
 // 			if( this.status = 409 ) {
 // 			  document.getElementById("signupResult").innerHTML = "User already exists";
@@ -93,26 +93,23 @@ function doSignup() {
 // 				return;
 // 			}
 // 		
-//        console.log("Signup successful: " + firstName + " " + lastName);
+//       console.log("Signup successful: " + firstName + " " + lastName);
 // 
 // 
-//  			  if (this.status == 200) {
-//           let jsonObject = JSON.parse(xhr.responseText);
-//           userId = jsonObject.id;
-//           document.getElementById("signupResult").innerHTML = "User added";
-//           firstName = jsonObject.firstName;
-//           lastName = jsonObject.lastName;
-//           saveCookie();
-//      }
-// 	
-// 				window.location.href = "index.html";
-// 			}
+//       if (this.status == 200) {
+//         let jsonObject = JSON.parse(xhr.responseText);
+//         userId = jsonObject.id;
+//         document.getElementById("signupResult").innerHTML = "User added";
+//         firstName = jsonObject.firstName;
+//         lastName = jsonObject.lastName;
+//         saveCookie();
+//       }
 // 		};
 // 		xhr.send(jsonPayload);
-// 	}
-// 	catch(err) {
-// 		document.getElementById("signupResult").innerHTML = err.message;
-// 	}
+//     
+//     } catch(err) {
+//       document.getElementById("signupResult").innerHTML = err.message;
+//     }
 }
 
 // Function to handle user logout
