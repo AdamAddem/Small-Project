@@ -9,6 +9,25 @@ let userId = 0;
 let firstName = "";
 let lastName = "";
 
+// Attach event listeners when the page loads
+document.addEventListener("DOMContentLoaded", function() {
+  const loginForm = document.getElementById("login");
+  if (loginForm) {
+    loginForm.addEventListener("submit", function(e) {
+      e.preventDefault();
+      doLogin();
+    });
+  }
+
+  const signupForm = document.getElementById("signup");
+  if (signupForm) {
+    signupForm.addEventListener("submit", function(e) {
+      e.preventDefault();
+      doSignup();
+    });
+  }
+});
+
 // Function to handle user login
 function doLogin() {
   userId = 0;
