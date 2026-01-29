@@ -16,16 +16,24 @@
     
     $conn = new mysqli($host, $user, $pwd, $db);
 
-
     if ($conn->connect_error) {
         http_response_code(400);
         header('Content-type: text/plain');
         echo $conn->connect_error;
         exit();
-    }
-    else {
+    } else {
         // Create contact logic here
-        
+        $stmt = $conn->prepare("INSERT INTO Contacts (UserID, FirstName, LastName, Email, Phone) VALUES (?, ?, ?, ?, ?)");
+        $stmt->bind_param("issss", $userID, $firstName, $lastName, $email, $phone);
+
+        if ($stmt->execute() === TRUE) {
+            $contactID = $conn->insert_id;
+            returnWithInfo($contactID, $firstName, $lastName, $email, $phone);
+        } else {
+            http_response_code(400);
+        }
+        $stmt->close();
+        $conn->close();
     }
 
     // Validation
