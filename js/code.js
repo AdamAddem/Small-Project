@@ -125,8 +125,8 @@ function doSignup() {
         
         userId = jsonObject.id;
         document.getElementById("signupResult").innerHTML = "User added successfully!";
-        firstName = jsonObject.firstName;
-        lastName = jsonObject.lastName;
+        // firstName = jsonObject.firstName;
+        // lastName = jsonObject.lastName;
         console.log("Signup successful: " + firstName + " " + lastName);
         saveCookie();
         // window.location.href = "contacts.html";
