@@ -1,6 +1,4 @@
 <?php
-    header("Content-Type: application/json");
-    
     // Load .env file
     $envFile = __DIR__ . '/../.env';
     if (file_exists($envFile)) {
@@ -26,10 +24,10 @@
     // $pwd = "XXXXXX";
 
     // Sign-up parameters
-    $firstName = $inData["firstName"] ?? "";
-    $lastName = $inData["lastName"] ?? "";
-    $login = $inData["login"] ?? "";
-    $password = $inData["password"] ?? "";
+    $firstName = $inData["firstName"];
+    $lastName = $inData["lastName"];
+    $login = $inData["login"];
+    $password = $inData["password"];
 
     $conn = new mysqli($host, $user, $pwd, $db);
 
@@ -51,7 +49,7 @@
 
     // Check password length
     if(strlen($password) < 5) {
-        returnWithError("Password must be at least 5 characters");
+        returnWithError("Password but be at least 5 characters");
         exit();
     }
 
@@ -90,13 +88,13 @@
         echo $obj;
     }
 
-    function returnWithInfo($firstName, $lastName, $id){
-        $retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}';
+    function returnWithInfo($contacts){
+        $retValue = '{"Contacts":' . json_encode($contacts) . ',"Error": ""}';
         sendResultInfoAsJson($retValue);
     }
 
     function returnWithError($msg){
-        $retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $msg . '"}';
+        $retValue = '{"Error":"' . $msg . '"}';
         sendResultInfoAsJson($retValue);
     }
 ?>
