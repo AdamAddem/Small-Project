@@ -44,12 +44,12 @@ jobs:
             # Option 1: Clear directory and clone (CAUTION: deletes existing files)
             rm -rf /var/www/html/*
             rm -rf /var/www/html/.*  2>/dev/null || true
-            git clone -b staging https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git .
+            git clone -b staging https://github.com/AdamAddem/Small-Project.git .
             
             # Option 2: Deploy to subdirectory instead (uncomment if you prefer)
             # cd /var/www
             # rm -rf myapp
-            # git clone -b staging https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git myapp
+            # git clone -b staging https://github.com/AdamAddem/Small-Project.git myapp
           fi
           
           # Add any additional deployment commands here
