@@ -32,16 +32,24 @@ jobs:
         
         # Deploy to server
         ssh -o StrictHostKeyChecking=no root@$SERVER_IP << 'EOF'
+          # Navigate to web root or create a project directory
           cd /var/www/html
           
-          # Remove old files (optional - be careful with this)
-          # rm -rf *
-          
-          # Clone or pull the repository
+          # Check if this is already a git repo
           if [ -d ".git" ]; then
+            # Already a repo, just pull latest changes
             git pull origin staging
           else
-            git clone -b staging https://github.com/AdamAddem/Small-Project.git .
+            # Not a git repo yet - need to initialize
+            # Option 1: Clear directory and clone (CAUTION: deletes existing files)
+            rm -rf /var/www/html/*
+            rm -rf /var/www/html/.*  2>/dev/null || true
+            git clone -b staging https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git .
+            
+            # Option 2: Deploy to subdirectory instead (uncomment if you prefer)
+            # cd /var/www
+            # rm -rf myapp
+            # git clone -b staging https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git myapp
           fi
           
           # Add any additional deployment commands here
