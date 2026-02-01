@@ -47,7 +47,7 @@
 
     // Check password length
     if(strlen($password) < 5) {
-        returnWithError("Password but be at least 5 characters");
+        returnWithError("Password must be at least 5 characters");
         exit();
     }
 
@@ -57,24 +57,23 @@
     $stmt->execute();
     $result = $stmt->get_result();
 
-    if ($result->num_rows <= 0){
-        // Create new user
-        $stmt = $conn->prepare("INSERT INTO Users (FirstName, LastName, Login, Password) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("ssss", $firstName, $lastName, $login, $password);
+    if ($result->num_rows > 0){
+        returnWithError("Username already exists!");
+        $stmt->close();
+        $conn->close();
+        exit();
+    }
 
-        if ($stmt->execute()){
-            $newUserID = $conn->insert_id;
-            returnUserInfo( $newUserID, $firstName, $lastName );
-        }
-        else returnWithError("Error: Failed to create new account");
-        
-    } 
-    else returnWithError("Username already exists!");
-    
+    // Create new user
+    $stmt = $conn->prepare("INSERT INTO Users (FirstName, LastName, Login, Password) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param("ssss", $firstName, $lastName, $login, $password);
+
+    if ($stmt->execute())
+        returnUserInfo( $conn->insert_id, $firstName, $lastName ); 
+    else 
+        returnWithError("Error: Failed to create new account");
 
     $stmt->close();
     $conn->close();
-
-
 
 ?>

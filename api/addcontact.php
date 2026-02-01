@@ -36,23 +36,24 @@
         exit();
     }
 
-    // Create contact logic here
-    $stmt = $conn->prepare("INSERT INTO Contacts (UserID, FirstName, LastName, Email, Phone) VALUES (?, ?, ?, ?, ?)");
-    $stmt->bind_param("issss", $userID, $firstName, $lastName, $email, $phone);
-
-    if ($stmt->execute() === TRUE) {
-        $contactID = $conn->insert_id;
-        returnContactInfo($contactID, $firstName, $lastName, $email, $phone);
-    } else 
-        http_response_code(400);
-    
-    $stmt->close();
-    $conn->close();
-
     // Validation
     if (empty($firstName) || empty($lastName) || empty($userID)) {
         returnWithError("First name, last name, and user ID are required");
         $conn->close();
         exit();
     }
+
+    // Create contact logic here
+    $stmt = $conn->prepare("INSERT INTO Contacts (UserID, FirstName, LastName, Email, Phone) VALUES (?, ?, ?, ?, ?)");
+    $stmt->bind_param("issss", $userID, $firstName, $lastName, $email, $phone);
+
+    if ($stmt->execute() === TRUE) 
+        returnContactInfo($conn->insert_id, $firstName, $lastName, $email, $phone);
+    else 
+        http_response_code(400);
+    
+    $stmt->close();
+    $conn->close();
+
+
 ?>
