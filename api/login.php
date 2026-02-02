@@ -1,5 +1,4 @@
 <?php
-
     // Load .env file
     $envFile = __DIR__ . '/../.env';
     if (file_exists($envFile)) {
@@ -54,8 +53,4 @@
     
     $stmt->close();
     $conn->close();
-    
-    
-
-
 ?>

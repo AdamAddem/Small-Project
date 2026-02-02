@@ -22,9 +22,9 @@
         $retValue = '{"Contacts":' . json_encode($contacts) . ',"error": ""}';
         sendResultInfoAsJson($retValue);
     }
-    
+
 	function returnUserInfo($id, $firstName, $lastName){
 		$retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}';
-		sendResultInfoAsJson( $retValue );
+		sendResultInfoAsJson($retValue);
 	}
 ?>
