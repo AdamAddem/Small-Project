@@ -1,0 +1,15 @@
+RewriteEngine On
+
+# Serve static files normally
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^ - [L]
+
+# Map endpoints
+RewriteRule ^api/login$ api/login.php [L]
+RewriteRule ^api/register$ api/register.php [L]
+RewriteRule ^api/logout$ api/logout.php [L]
+
+RewriteRule ^api/contacts/create$ api/contacts_create.php [L]
+RewriteRule ^api/contacts/delete$ api/contacts_delete.php [L]
+RewriteRule ^api/contacts/search$ api/contacts_search.php [L]
+RewriteRule ^api/contacts/seeall$ api/contacts_seeall.php [L]
