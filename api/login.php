@@ -34,7 +34,10 @@
         exit();
     }
  
+    // prepare mysql statement to find user in table
     $stmt = $conn->prepare("SELECT ID, FirstName, LastName FROM Users WHERE (Login=? AND Password=?)");
+
+    // check if stmt is null -> error
     if (!$stmt) {
         echo json_encode([
             "id" => 0,
@@ -42,6 +45,7 @@
         ]);
         exit();
     }
+    
     $stmt->bind_param("ss", $inData["login"], $inData["password"]);
     $stmt->execute();
     $result = $stmt->get_result();
