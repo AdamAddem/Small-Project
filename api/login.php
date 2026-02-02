@@ -27,6 +27,7 @@
 
     $conn = new mysqli($host, $user, $pwd, $db);
  
+    // error check for db connection
     if($conn->connect_errno){
         http_response_code(400);
         header('Content-type: text/plain');
@@ -37,7 +38,7 @@
     // prepare mysql statement to find user in table
     $stmt = $conn->prepare("SELECT ID, FirstName, LastName FROM Users WHERE (Login=? AND Password=?)");
 
-    // check if stmt is null -> error
+    // check if stmt is null -> mysql error
     if (!$stmt) {
         echo json_encode([
             "id" => 0,
@@ -45,7 +46,7 @@
         ]);
         exit();
     }
-    
+
     $stmt->bind_param("ss", $inData["login"], $inData["password"]);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -53,7 +54,9 @@
     if ($row = $result->fetch_assoc())
         returnUserInfo( $row['ID'], $row['FirstName'], $row['LastName']);
     else
-        returnWithError("No records found");
+        $err = "No records found"
+        $retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
+        sendResultInfoAsJson($retValue);
     
     $stmt->close();
     $conn->close();
