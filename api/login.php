@@ -52,11 +52,15 @@
     $result = $stmt->get_result();
 
     if ($row = $result->fetch_assoc())
+    {
         returnUserInfo( $row['ID'], $row['FirstName'], $row['LastName']);
+    }
     else
+    {
         $err = "No records found";
         $retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
         sendResultInfoAsJson($retValue);
+    }
     
     $stmt->close();
     $conn->close();
