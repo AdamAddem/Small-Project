@@ -28,7 +28,7 @@
     $conn = new mysqli($host, $user, $pwd, $db);
  
     // error check for db connection
-    if($conn->connect_errno){
+    if($conn->connect_errno) {
         http_response_code(400);
         header('Content-type: text/plain');
         echo $conn->connect_error;
@@ -51,12 +51,10 @@
     $stmt->execute();
     $result = $stmt->get_result();
 
-    if ($row = $result->fetch_assoc())
-    {
+    if ($row = $result->fetch_assoc()){
         returnUserInfo( $row['ID'], $row['FirstName'], $row['LastName']);
     }
-    else
-    {
+    else {
         $err = "No records found";
         $retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
         sendResultInfoAsJson($retValue);
