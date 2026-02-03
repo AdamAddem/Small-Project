@@ -45,8 +45,7 @@
         sendResultInfoAsJson(json_encode($contacts));
     }
     else {
-        returnWithError("MySQL statement failed to run");
-        exit();
+        http_response_code(400);
     }
 
     $stmt->close();

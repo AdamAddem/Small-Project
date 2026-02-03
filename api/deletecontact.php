@@ -11,6 +11,8 @@
         }
     }
 
+    require 'helpers.php';
+
     $inData = getRequestInfo(); 
 
     // Get DB credentials
@@ -19,5 +21,20 @@
     $user = getenv('DB_USER');
     $pwd = getenv('DB_PASS');
 
+    // frontend input parameters
+    $contactID = $inData["contactID"];
 
+    // database connection
+    $conn = new mysqli($host, $user, $pwd, $db);
+ 
+    // database connection error
+    if ($conn->connect_errno) {
+        http_response_code(400);
+        header('Content-type: text/plain');
+        echo $conn->connect_error;
+        exit();
+    }
+
+    // TODO LOGIC TO BE ADDED
+    
 ?>
